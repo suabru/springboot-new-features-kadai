@@ -14,33 +14,31 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "houses")
+@Table(name = "reviews")
 @Data
 public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-
-    @Column(name = "comment")
-    private String comment;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Integer id;
+	
+	@ManyToOne
+	@JoinColumn(name = "house_id")
+	private House house;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+    @Column(name = "score")
+    private Integer score;
     
-    @Column(name = "evaluation")
-    private Integer evaluation ;
-
-    @ManyToOne
-    @JoinColumn(name = "house_id")
-    private House house; 
+    @Column(name = "content")
+    private String content;
     
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;  
-    
-   
-
     @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp createdAt;
-
+    
     @Column(name = "updated_at", insertable = false, updatable = false)
     private Timestamp updatedAt;
 }
