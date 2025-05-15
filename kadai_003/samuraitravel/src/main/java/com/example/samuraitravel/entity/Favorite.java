@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 import lombok.Data;
 
 @Entity
@@ -30,8 +31,9 @@ public class Favorite {
 	private User user;
 	
 	@Column(name = "created_at", insertable = false, updatable = false)
-    private Timestamp createdAt;
+	private Timestamp createdAt;
 	
 	@Column(name = "updated_at", insertable = false, updatable = false)
-    private Timestamp updatedAt;
+	private Timestamp updatedAt;
+
 }
