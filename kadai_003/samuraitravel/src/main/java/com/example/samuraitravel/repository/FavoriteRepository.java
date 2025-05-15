@@ -8,14 +8,8 @@ import com.example.samuraitravel.entity.Favorite;
 import com.example.samuraitravel.entity.House;
 import com.example.samuraitravel.entity.User;
 
-
-public interface FavoriteRepository extends JpaRepository<Favorite, Integer> {
-   public Page<Favorite> findByUserOrderByCreatedAtDesc(User user, Pageable pageable);
-   
-   public Favorite findByHouseAndUser(House house, User user);
-   
-   boolean existsByHouseAndUser(House house, User user);
-   
+public interface FavoriteRepository extends JpaRepository <Favorite, Integer>{
+	public Favorite findByHouseAndUser (House  house, User user);
+	public Page<Favorite> findByUserOrderByCreatedAtDesc(User user, Pageable pageable);
 
 }
-
