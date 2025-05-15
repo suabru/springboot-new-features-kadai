@@ -8,34 +8,28 @@ import com.example.samuraitravel.entity.House;
 import com.example.samuraitravel.entity.User;
 import com.example.samuraitravel.repository.FavoriteRepository;
 
-
 @Service
 public class FavoriteService {
 	private final FavoriteRepository favoriteRepository;
-	
 	public FavoriteService(FavoriteRepository favoriteRepository) {
 		this.favoriteRepository = favoriteRepository;
 	}
 	
-//	お気に入り登録・追加
+	//お気に入り登録
 	@Transactional
-	public void subscribe(House house, User user) {
-		
+	public void register (House house, User user) {
 		Favorite favorite = new Favorite();
 		
 		favorite.setHouse(house);
 		favorite.setUser(user);
 		
 		favoriteRepository.save(favorite);
+		
+	}
 	
+	//お気に入り登録済みかどうか
+	public boolean hasUserAlreadyLiked(House house, User user) {
+		return favoriteRepository.findByHouseAndUser(house, user) != null;
 	}
 
-	
-	public boolean favoriteJudge(House house, User user) {
-		Favorite favorite = favoriteRepository.findByHouseAndUser(house, user);
-		return favorite != null;
-	}
 }
-
-
-    
