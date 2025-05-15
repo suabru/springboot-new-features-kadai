@@ -19,7 +19,7 @@ import com.example.samuraitravel.entity.House;
 import com.example.samuraitravel.entity.Review;
 import com.example.samuraitravel.entity.User;
 import com.example.samuraitravel.form.ReviewEditForm;
-import com.example.samuraitravel.form.ReviewForm;
+import com.example.samuraitravel.form.ReviewRegisterForm;
 import com.example.samuraitravel.repository.HouseRepository;
 import com.example.samuraitravel.repository.ReviewRepository;
 import com.example.samuraitravel.security.UserDetailsImpl;
@@ -55,7 +55,7 @@ public class ReviewController {
 	  House house = houseRepository.getReferenceById(houseId);
 	  
 	  model.addAttribute("house", house);
-	  model.addAttribute("reviewForm", new ReviewForm());
+	  model.addAttribute("reviewForm", new ReviewRegisterForm());
 	  
 	  return "reviews/register";
   }
@@ -63,7 +63,7 @@ public class ReviewController {
   @PostMapping("/create")
   public String create(@PathVariable(name = "houseId") Integer houseId,
 		               @AuthenticationPrincipal UserDetailsImpl userdetailsImpl,
-		               @ModelAttribute @Validated ReviewForm reviewForm,
+		               @ModelAttribute @Validated ReviewRegisterForm reviewForm,
 		               BindingResult bindingResult,
 		               RedirectAttributes redirectAttributes,
 		               Model model) {
@@ -87,7 +87,7 @@ public class ReviewController {
 		             Model model) {
 	  Review review = reviewRepository.getReferenceById(id);
 	  House house = houseRepository.getReferenceById(houseId);
-	  ReviewEditForm reviewEditForm = new ReviewEditForm(review.getId(), review.getScore(), review.getContent());
+	  ReviewEditForm reviewEditForm = new ReviewEditForm(review.getId(), review.getEvaluation(), review.getComment());
 	  
 	  model.addAttribute("review", review);
 	  model.addAttribute("house", house);
