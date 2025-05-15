@@ -19,48 +19,43 @@ import com.example.samuraitravel.repository.HouseRepository;
 import com.example.samuraitravel.security.UserDetailsImpl;
 import com.example.samuraitravel.service.FavoriteService;
 
-
 @Controller
 public class FavoriteController {
 	private final FavoriteRepository favoriteRepository;
-	private final HouseRepository houseRepository;
 	private final FavoriteService favoriteService;
+	private final HouseRepository houseRepository;
 	
-	public FavoriteController(FavoriteRepository favoriteRepository, HouseRepository houseRepository, FavoriteService favoriteService) {
+	public FavoriteController (FavoriteRepository favoriteRepository, FavoriteService favoriteService, HouseRepository houseRepository) {
 		this.favoriteRepository = favoriteRepository;
-		this.houseRepository = houseRepository;
 		this.favoriteService = favoriteService;
+		this.houseRepository = houseRepository;
 	}
-
+	
+	//お気に入り一覧表示
 	@GetMapping("/favorites")
-	public String index(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-			            @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable, Model model) {
+	public String index (@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PageableDefault(page = 0, size = 10, sort = "id") Pageable pageable, Model model) {
 		User user = userDetailsImpl.getUser();
-		Page<Favorite> favoritePage = favoriteRepository.findByUserOrderByCreatedAtDesc(user, pageable);
-		
-		model.addAttribute("favoritePage", favoritePage);
-		
-		return "favorites/index";
+		Page<Favorite> favoritePage = favoriteRepository.findByUserOrderByCreatedAtDesc(user,  pageable);
+		     model.addAttribute("favoritePage", favoritePage);
+		     return "favorites/index";
 	}
 	
-	
-	@PostMapping("/houses/{id}/favorites/subscribe")
-	public String subscribe(@PathVariable(name = "id") Integer id, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl, RedirectAttributes redirectAttributes, Model model) {
-		House house = houseRepository.getReferenceById(id);
-		User user = userDetailsImpl.getUser();
-		favoriteService.subscribe(house, user);
+	//お気に入り登録
+		@PostMapping("/houses/{houseId}/favorites/register")
+		public String register (@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PathVariable(name = "houseId") Integer houseId, RedirectAttributes redirectAttributes, Model model){
+			House house = houseRepository.getReferenceById(houseId);
+			User user = userDetailsImpl.getUser();
+			favoriteService.register(house, user);
+			return "redirect:/houses/{houseId}";
+
+		}
 		
-		redirectAttributes.addFlashAttribute("successMessage", "お気に入りに登録しました。");
-		
-		return "redirect:/houses/{id}";
-	}
-	
-	@PostMapping("/houses/{id}/favorites/{favoriteId}/delete")
-	public String delete(@PathVariable(name = "favoriteId") Integer id, RedirectAttributes redirectAttributes) {
-		favoriteRepository.deleteById(id);
-		
-		redirectAttributes.addFlashAttribute("successMessage", "お気に入り登録を解除しました。");
-		
-		return "redirect:/houses/{id}";
-	}
+		//お気に入り解除
+		@PostMapping("/houses/{houseId}/favorites/{favoriteId}/delete")
+		public String delete (@PathVariable(name = "favoriteId") Integer favoriteId, RedirectAttributes redirectAttributes) {
+			favoriteRepository.deleteById(favoriteId);
+			
+			return "redirect:/houses/{houseId}";
+		}
+
 }
