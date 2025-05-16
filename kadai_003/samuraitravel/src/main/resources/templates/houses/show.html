@@ -29,11 +29,11 @@
                            <!-- お気に入り -->
                              	<div sec:authorize="isAuthenticated()">
                                     <div th:if="${hasUserAlreadyLiked}">
-                                        <a href="#" onclick="event.preventDefault(); document.getElementById('favorite-form').submit();">&#9825; お気に入り解除</a>
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('favorite-form').submit();">&#9825; お気に入り追加</a>
                                         <form method="post" th:action="@{/houses/__${house.getId()}__/favorites/__${favorite.getId()}__/delete}" id="favorite-form" class="d-none"></form>                                        
                                     </div>
                                     <div th:unless="${hasUserAlreadyLiked}">
-                                        <a href="#" onclick="event.preventDefault(); document.getElementById('favorite-form').submit();">&#9829; お気に入り追加</a>
+                                        <a href="#" onclick="event.preventDefault(); document.getElementById('favorite-form').submit();">&#9829; お気に入り解除</a>
                                         <form method="post" th:action="@{/houses/__${house.getId()}__/favorites/register}" id="favorite-form" class="d-none"></form>                                          
                                     </div>
                             	</div>
