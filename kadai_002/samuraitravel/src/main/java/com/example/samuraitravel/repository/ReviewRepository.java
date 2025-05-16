@@ -11,11 +11,8 @@ import com.example.samuraitravel.entity.Review;
 import com.example.samuraitravel.entity.User;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
-	public Page<Review> findByHouseOrderByCreatedAtDesc(House house, Pageable pageable);
-	
+	public List findTop6ByHouseOrderByCreatedAtDesc(House house);
+	public Review findByHouseAndUser(House house, User user);
 	public long countByHouse(House house);
-	
-	public Review findByUserAndHouse(User user, House house);
-	
-	public List<Review> findTop6ByHouseOrderByCreatedAtDesc(House house);
+	public Page findByHouseOrderByCreatedAtDesc(House house, Pageable pageble);
 }
