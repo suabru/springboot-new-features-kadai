@@ -25,8 +25,8 @@
 								   <label for="name" class="col-form-label text-md-left fw-bold">評価</label>								   
 							   </div>
 							   <div class="col-md-9">
-								   <div th:if="${#fields.hasErrors('evaluation')}" class="text-danger small mb-2" th:errors="*{evaluation}"></div>
-								   <select class="form-select samuraitravel-star" th:field="*{evaluation}">
+								   <div th:if="${#fields.hasErrors('score')}" class="text-danger small mb-2" th:errors="*{score}"></div>
+								   <select class="form-select samuraitravel-star" th:field="*{score}">
 									  <option class="samuraitravel-star" value="5" selected>&#9733;&#9733;&#9733;&#9733;&#9733;</option>   
 									  <option class="samuraitravel-star" value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
                                        <option class="samuraitravel-star" value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
