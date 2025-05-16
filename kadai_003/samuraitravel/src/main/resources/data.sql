@@ -87,18 +87,20 @@ INSERT IGNORE INTO reservations (id, house_id, user_id, checkin_date, checkout_d
 INSERT IGNORE INTO reservations (id, house_id, user_id, checkin_date, checkout_date, number_of_people, amount) VALUES (10, 10, 1, '2023-04-01', '2023-04-02', 6, 10000);
 INSERT IGNORE INTO reservations (id, house_id, user_id, checkin_date, checkout_date, number_of_people, amount) VALUES (11, 11, 1, '2023-04-01', '2023-04-02', 2, 6000);
 
--- reviewsテーブル
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (1, 1, 2, 4, '部屋が綺麗で、快適に過ごせました。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (2, 1, 3, 4, 'アクセスが良く、観光に最適でした。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (3, 1, 4, 5, 'スタッフが親切で、気持ちよく滞在できました。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (4, 1, 5, 4, '駅から近く、便利でした。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (5, 1, 6, 5, '周辺の飲食店が充実していて、楽しめました。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (6, 1, 7, 4, '宿泊費が手頃で、コストパフォーマンスがよかったです。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (7, 1, 8, 3, '静かな環境でゆっくり休めました。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (8, 1, 9, 4, '施設内の設備が充実していました。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (9, 1, 10, 5, 'Wi-Fiが快適で助かりました。');
-INSERT IGNORE INTO reviews (id, house_id, user_id, score, content) VALUES (10, 1, 11, 4, '清潔感があり、気持ちよく滞在できました。');
--- favoritesテーブル
+--reviewテーブル
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (1, 1, 1, 5, '部屋が綺麗で、快適に過ごせました。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (2, 1, 2, 4, 'スタッフの対応が丁寧で安心できました。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (3, 1, 3, 3, '部屋は普通でしたが、立地が良かったです。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (4, 1, 4, 5, '設備が整っており、快適に過ごせました。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (5, 1, 5, 2, '清掃が行き届いておらず、少し残念でした。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (6, 1, 6, 4, '朝食がとても美味しく、満足しました。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (7, 1, 7, 5, '温泉が素晴らしく、リラックスできました。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (8, 1, 8, 3, '値段相応の宿でしたが、接客は良かったです。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (9, 1, 9, 4, 'アクセスが良く、観光に便利でした。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (10, 1, 10, 1, '設備が古く、あまり快適ではありませんでした。');
+INSERT IGNORE INTO reviews (id, house_id, user_id, score, comment) VALUES (11, 1, 11, 5, 'とても満足しました！また泊まりたいです。');
+
+-- favoriresテーブル
 INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (1, 1, 1);
 INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (2, 2, 1);
 INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (3, 3, 1);
@@ -109,3 +111,4 @@ INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (7, 7, 1);
 INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (8, 8, 1);
 INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (9, 9, 1);
 INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (10, 10, 1);
+INSERT IGNORE INTO favorites (id, house_id, user_id) VALUES (11, 11, 1);
